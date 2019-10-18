@@ -22,6 +22,22 @@ defmodule UCL.ParserTest do
              ]
     end
 
+    test "logical types" do
+      logical = """
+      yes = true
+      no = false
+      void = null
+      """
+
+      {:ok, ast} = Parser.parse(logical)
+
+      assert ast == [
+               {:assignment, 'yes', {:boolean, :true}},
+               {:assignment, 'no', {:boolean, :false}},
+               {:assignment, 'void', {:boolean, :null}}
+             ]
+    end
+
     test "simple section" do
       string = """
       rooms "town_square" {
