@@ -4,6 +4,24 @@ defmodule UCL.ParserTest do
   alias UCL.Parser
 
   describe "the basics" do
+    test "base types - numbers, strings" do
+      basics = """
+      number = 123
+      string = "woo"
+      really_a_string = "123"
+      mixed_string = "sha256"
+      """
+
+      {:ok, ast} = Parser.parse(basics)
+
+      assert ast == [
+               {:assignment, 'number', {:integer, 123}},
+               {:assignment, 'string', {:string, ['woo']}},
+               {:assignment, 'really_a_string', {:string, ['123']}},
+               {:assignment, 'mixed_string', {:string, ['sha256']}}
+             ]
+    end
+
     test "simple section" do
       string = """
       rooms "town_square" {
