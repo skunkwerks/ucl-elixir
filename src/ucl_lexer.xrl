@@ -20,7 +20,7 @@ Space = \s+
 Star = \*
 CommentOpen = \/\*
 CommentClose = \*\/
-Word = [^0-9{}\*\/#\n\[\]=\s'":\;\\-]+
+Word = [^0-9{}\*\/#\n\[\]=\s'":\;\-\b\f\r\t\e\v\d]+
 
 Rules.
 
